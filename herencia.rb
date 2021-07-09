@@ -2,11 +2,30 @@
 class Appointment
     attr_accessor :location, :purpose, :hour, :min 
     def initialize(location, purpose, hour, min)
-        @location = location
-        @purpose = purpose
+        get_location_purpose(location, purpose)
+        get_hour_min(hour,min)
         @hour = hour
         @min = min
     end
+
+    def get_location_purpose(location, purpose)
+        if location.class == String && purpose.class == String
+            @location = location
+            @purpose = purpose
+        else
+            raise "Pasate un string"
+        end
+    end
+
+    def get_hour_min(hour, min)
+        if hour.class == Integer && min.class == Integer
+            @hour = hour
+            @min = min
+        else
+            raise "Pasate un numero"
+        end
+    end
+
 end
 
 class MonthlyAppointment < Appointment
